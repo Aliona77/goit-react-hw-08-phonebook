@@ -1,41 +1,48 @@
-//===========REDUX_TOOLKIT==============
-import { v4 as uuidv4 } from "uuid";
 import { createAction } from "@reduxjs/toolkit";
 
-export const addContact = createAction("contacts/add", ({ name, number }) => ({
-  payload: {
-    id: uuidv4(),
-    name: name,
-    number: number,
-  },
-}));
+export const fetchContactsRequest = createAction(
+  "contacts/fetchContactsRequest"
+);
+export const fetchContactsSuccess = createAction(
+  "contacts/fetchContactsSuccess"
+);
+export const fetchContactsError = createAction("contacts/fetchContactsError");
 
-export const deleteContact = createAction("contacts/delete");
+export const addContactRequest = createAction("contacts/addContactRequest");
+export const addContactSuccess = createAction("contacts/addContactSuccess");
+export const addContactError = createAction("contacts/addContactError");
+
+export const deleteContactRequest = createAction(
+  "contacts/deleteContactRequest"
+);
+export const deleteContactSuccess = createAction(
+  "contacts/deleteContactSuccess"
+);
+export const deleteContactError = createAction("contacts/deleteContactError");
+
+export const toggleCompletedRequest = createAction(
+  "contacts/toggleCompletedRequest"
+);
+export const toggleCompletedSuccess = createAction(
+  "contacts/toggleCompletedSuccess"
+);
+export const toggleCompletedError = createAction(
+  "contacts/toggleCompletedError"
+);
 
 export const changeFilter = createAction("contacts/changeFilter");
 
-//=======================REDUX==============
+// import { v4 as uuidv4 } from "uuid";
+// import { createAction } from "@reduxjs/toolkit";
 
-// import types from "./phonebook-types";
-// import shortid from "shortid";
-
-// const addContact = (name, number) => ({
-//   type: types.ADD,
+// export const addContact = createAction("contacts/add", ({ name, number }) => ({
 //   payload: {
-//     id: shortid.generate(),
+//     id: uuidv4(),
 //     name: name,
 //     number: number,
 //   },
-// });
+// }));
 
-// const deleteContact = (contactId) => ({
-//   type: types.DELETE,
-//   payload: contactId,
-// });
+// export const deleteContact = createAction("contacts/delete");
 
-// const changeFilter = (value) => ({
-//   type: types.CHANGE_FILTER,
-//   pyload: value,
-// });
-
-// export default { addContact, deleteContact, changeFilter };
+// export const changeFilter = createAction("contacts/changeFilter");

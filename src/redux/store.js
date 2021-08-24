@@ -1,5 +1,3 @@
-//===========REDUX_TOOLKIT==============
-
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import {
@@ -14,8 +12,8 @@ import {
 } from "redux-persist";
 
 import storage from "redux-persist/lib/storage";
-import contactsReducer from "./phonebook-reducer";
-import { authReducer } from "../auth";
+import { contactsReducer } from "./phonebook";
+import { authReducer } from "./auth";
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -41,16 +39,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-//===========================REDUX===============
-
-// import contactsReducer from "./phonebook-reducer";
-// import { createStore, combineReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-// });
-
-// const store = createStore(rootReducer, composeWithDevTools());
-// export default store;
