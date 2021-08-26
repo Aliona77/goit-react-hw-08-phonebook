@@ -1,4 +1,3 @@
-
 import { Containers } from "./Container.styles";
 
 export default function Container ({ children }) {
@@ -8,3 +7,14 @@ export default function Container ({ children }) {
       </Containers>
     )
 };
+
+// import { Containers, Title } from "./Container.styles";
+
+// export default function Container ({ children, title }) {
+//     return (
+//        <Containers>
+//     <Title>{title}</Title>
+//     {children}
+//   </Containers>
+//     )
+// };

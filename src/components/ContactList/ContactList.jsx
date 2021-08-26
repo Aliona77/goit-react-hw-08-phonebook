@@ -1,15 +1,14 @@
 import { Contact, ContactItem, ButtonDelete, Text } from './ContactList.styles'
-import { useSelector, useDispatch } from 'react-redux';
+import {   useSelector, useDispatch } from 'react-redux';
 //import { connect } from 'react-redux';
-import * as actions from '../../redux/phonebook/phonebook-actions';
-import { onFilteredContacts } from '../../redux/phonebook/pnonebook-selector';
+import { contactsSelectors, contactsOperations } from '../../redux/phonebook';
 
 
 
 const ContactList = () =>{
-    const contacts = useSelector(onFilteredContacts);
+    const contacts = useSelector(contactsSelectors.getFilter);
     const dispatch = useDispatch();
-    const onDeleteContact = (id) => dispatch(actions.deleteContact(id));
+    const onDeleteContact = (id) => dispatch(contactsOperations.deleteContact(id));
 
     return(
         <Contact>
@@ -26,23 +25,42 @@ const ContactList = () =>{
 }
 export default ContactList;
 
-//=========REDUX==================
-
-//  const onFilteredContacts = (contacts, filter) => {
-//      const normalizedFilter = filter.toLowerCase()
-//     return contacts.filter(({contact}) =>
-//       contact.name.toLowerCase().includes(normalizedFilter),
-//     );
-// };
-  
-
-// const mapStateToPropes = ({ contacts: { items, filter } }) => ({
-//     contacts: onFilteredContacts(items, filter),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//  onDeleteContact:(id)=>dispatch(actions.deleteContact(id)),
-// });
+// import React, { useEffect } from "react";
+// import { Contact, ContactItem, ButtonDelete, Text } from './ContactList.styles'
+// import { useSelector, useDispatch } from 'react-redux';
+// import { contactsActions, contactsSelectors} from '../../redux/phonebook';
 
 
-//export default connect(mapStateToPropes, mapDispatchToProps)(ContactList );
+
+
+// const ContactList = () =>{
+//     const contacts = useSelector(contactsSelectors.getVisibleContacts);
+//     const dispatch = useDispatch();
+
+//     const onDeleteContact = (id) => dispatch(contactsActions.deleteContact(id));
+    
+//     useEffect(() => {
+//         dispatch(contactsActions.fetchContact())
+//     }, [dispatch])
+
+//     return (
+       
+
+//         <Contact >
+            
+//             {contacts.map(({id, name, number}) => (
+//                 <ContactItem
+//                     key={id}>
+//                     <Text>{name}:{number}
+//                     </Text>
+//             <ButtonDelete  type ="button" onClick={()=>onDeleteContact(id)}>Delete</ButtonDelete>
+//             </ContactItem>
+//         ))}
+//         </Contact>
+       
+//     )
+// }
+// export default ContactList;
+
+
+

@@ -32,17 +32,49 @@ export const toggleCompletedError = createAction(
 
 export const changeFilter = createAction("contacts/changeFilter");
 
-// import { v4 as uuidv4 } from "uuid";
-// import { createAction } from "@reduxjs/toolkit";
+// import axios from 'axios';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import {
+//   fetchContacts,
+//   fetchAddContact,
+//   fetchDeleteContact
+// } from './phonebook-operations';
 
-// export const addContact = createAction("contacts/add", ({ name, number }) => ({
-//   payload: {
-//     id: uuidv4(),
-//     name: name,
-//     number: number,
-//   },
-// }));
+// axios.defaults.baseURL = "https://611ec94f9771bf001785c61a.mockapi.io";
 
-// export const deleteContact = createAction("contacts/delete");
+// export const fetchContact = createAsyncThunk(
+//   'contacts/fetchContact',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const { data } = await fetchContacts();
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-// export const changeFilter = createAction("contacts/changeFilter");
+// export const addContact = createAsyncThunk(
+//   'contacts/addContact',
+//   async ({ name, number }, { rejectWithValue }) => {
+//     try {
+//       const newContact = { name, number };
+//       const { data } = await fetchAddContact(newContact);
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+//  export const deleteContact = createAsyncThunk(
+//   'contacts/deleteContact',
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       await fetchDeleteContact(id);
+//       return id;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );

@@ -53,20 +53,61 @@ export default combineReducers({
   error,
 });
 
-// import { createReducer, combineReducers } from "@reduxjs/toolkit";
-// import * as actions from "./phonebook-actions";
+// import { createSlice } from '@reduxjs/toolkit';
 
-// const items = createReducer([], {
-//   [actions.addContact]: (state, { payload }) => [...state, payload],
-//   [actions.deleteContact]: (state, { payload }) =>
-//     state.filter(({ id }) => id !== payload),
+// import {
+//  fetchContact,
+//   addContact,
+//   deleteContact
+// } from './phonebook-actions';
+
+// const contactsSlice = createSlice({
+//   name: 'contacts',
+//   initialState: {
+//     items: [],
+//     filter: '',
+//     isLoding: false,
+//     error: null,
+//   },
+//    reducers: {
+//     changeFilter: (state, { payload }) => {
+//       state.filter = payload;
+//     },
+//   },
+//   extraReducers: {
+//     [fetchContact.fulfilled]: (state, { payload }) => {
+//       state.items = payload;
+//       state.status = null;
+//       state.error = null;
+//     },
+//     [fetchContact.pending]: (state) => {
+//       state.status = 'loading';
+//     },
+//     [fetchContact.rejected]: (state) => {
+//       state.status = null;
+//       state.error = 'Error';
+//     },
+//     [addContact.fulfilled]: (state, { payload }) => {
+//       state.items = [payload, ...state.items];
+//       state.status = null;
+//       state.error = null;
+//     },
+//     [addContact.pending]: (state) => {
+//       state.status = 'loading';
+//       state.error = null;
+//     },
+//     [addContact.rejected]: (state) => {
+//       state.status = null;
+//       state.error = 'Error';
+//     },
+//     [deleteContact.fulfilled]: (state, { payload }) => {
+//       state.items = state.items.filter(
+//         (contact) => contact.id !== payload
+//       );
+//     },
+//   },
 // });
 
-// const filter = createReducer("", {
-//   [actions.changeFilter]: (_, { payload }) => payload,
-// });
+// export const { changeFilter } = contactsSlice.actions;
 
-// export default combineReducers({
-//   items,
-//   filter,
-// });
+// export default contactsSlice.reducer;
