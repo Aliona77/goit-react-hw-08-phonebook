@@ -12,8 +12,8 @@ export const Containers = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
-  margin-top: 40px;
   padding: 20px 40px;
+
   background-color: rgb(47, 206, 255);
   box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   border-radius: 5px;

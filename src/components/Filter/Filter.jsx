@@ -1,15 +1,12 @@
 import { Input } from '../ContactForm/ContactForm.styles';
 import { Text } from './Filter.styles';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { contactsSelectors, changeFilter  } from '../../redux/phonebook';
 
-const Filter = () =>{
-     const value = useSelector(contactsSelectors.getFilter)
-    const dispatch = useDispatch()
-    
-    
+const Filter = ({filter}) =>{
 
+const changeFilterInput= e => {
+    filter(e.currentTarget.value);
+  };
     return (
         <>
             <Text>Find contact by name</Text>
@@ -19,8 +16,7 @@ const Filter = () =>{
                 placeholder="Name to search"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                value={value}
-                onChange={e => dispatch(changeFilter(e.target.value))}
+                onChange={changeFilterInput}
                 required>
                 </Input>
         </>
@@ -28,31 +24,4 @@ const Filter = () =>{
 }
 
 export default Filter;
-// import { Input } from '../ContactForm/ContactForm.styles';
-// import { Text } from './Filter.styles';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { contactsSelectors } from '../../redux/phonebook'
-// import { changeFilter } from '../../redux/phonebook/phonebook-slice';
 
-// const Filter = () =>{
-//      const value = useSelector(contactsSelectors.getFilter)
-//     const dispatch = useDispatch()
-
-//     return (
-//         <>
-//             <Text>Find contact by name</Text>
-//                <Input
-//                 type='text'
-//                 name='name'
-//                 placeholder="Name to search"
-//                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-//                 title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-//                 value={value}
-//                 onChange={e => dispatch(changeFilter(e.target.value))}
-//                 required>
-//                 </Input>
-//         </>
-//     )
-// }
-
-// export default Filter;

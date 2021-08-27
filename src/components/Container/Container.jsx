@@ -1,20 +1,11 @@
-import { Containers } from "./Container.styles";
 
-export default function Container ({ children }) {
+import { Title, Containers } from "./Container.styles";
+
+export default function Container ({ title, children }) {
     return (
         <Containers>
+            <Title>{title}</Title>
             {children}
       </Containers>
     )
 };
-
-// import { Containers, Title } from "./Container.styles";
-
-// export default function Container ({ children, title }) {
-//     return (
-//        <Containers>
-//     <Title>{title}</Title>
-//     {children}
-//   </Containers>
-//     )
-// };
