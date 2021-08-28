@@ -23,7 +23,7 @@ const Navigation = () => {
 return (
   <nav>
     <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
-      Главная
+      Home
     </NavLink>
 
     {isLoggedIn && (
@@ -33,7 +33,7 @@ return (
         style={styles.link}
         activeStyle={styles.activeLink}
       >
-        Контакты
+        Contacts
       </NavLink>
     )}
   </nav>
