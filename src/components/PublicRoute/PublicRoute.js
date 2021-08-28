@@ -8,11 +8,11 @@ export default function PublicRoute({
   redirectTo = "/",
   ...routeProps
 }) {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const shouldRedirect = isLoggedIn && restricted;
+  const isLoggedIn = useSelector(authSelectors.getIsLogin);
+
   return (
     <Route {...routeProps}>
-      {shouldRedirect ? <Redirect to={redirectTo} /> : children}
+      {isLoggedIn ? <Redirect to={redirectTo} /> : children}
     </Route>
   );
 }

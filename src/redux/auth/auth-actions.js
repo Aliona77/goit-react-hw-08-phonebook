@@ -1,61 +1,33 @@
-// import axios from 'axios';
-// import { createAsyncThunk } from '@reduxjs/toolkit';
-// import {
-//   fetchRegister,
-//   fetchlogIn,
-//   fetchlogOut,
-//   fetchCurrentAuth
-// } from './auth-operations';
+import { createAction } from "@reduxjs/toolkit";
 
-// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+const registerRequest = createAction("auth/registerRequest");
+const registerSuccess = createAction("auth/registerSuccess");
+const registerError = createAction("auth/registerError");
 
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = "";
-//   },
-// };
+const loginRequest = createAction("auth/loginRequest");
+const loginSuccess = createAction("auth/loginSuccess");
+const loginError = createAction("auth/loginError");
 
-// const fetchRegister = createAsyncThunk("auth/register", async (credentials) => {
-//   try {
-//     const { data } = await axios.post("/users/signup", credentials);
-//     token.set(data.token);
-//     return data;
-//   } catch (error) {}
-// });
+const logoutRequest = createAction("auth/logoutRequest");
+const logoutSuccess = createAction("auth/logoutSuccess");
+const logoutError = createAction("auth/logoutError");
 
-// export const fetchlogIn = createAsyncThunk("auth/login", async (credentials) => {
-//   try {
-//     const { data } = await axios.post("/users/login", credentials);
-//     token.set(data.token);
-//     return data;
-//   } catch (error) {}
-// });
+const getCurrentUserRequest = createAction("auth/getCurrentUserRequest");
+const getCurrentUserSuccess = createAction("auth/getCurrentUserSuccess");
+const getCurrentUserError = createAction("auth/getCurrentUserError");
 
-// export const fetchlogOut = createAsyncThunk("auth/logout", async () => {
-//   try {
-//     await axios.post("/users/logout");
-//     token.unset();
-//   } catch (error) {}
-// });
-
-// export const fetchCurrentUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
-
-//     if (persistedToken === null) {
-//       console.log("Токена нет, уходим из fetchCurrentUser");
-//       return thunkAPI.rejectWithValue();
-//     }
-
-//     token.set(persistedToken);
-//     try {
-//       const { data } = await axios.get("/users/current");
-//       return data;
-//     } catch (error) {}
-//   }
-// );
+const authActions = {
+  registerRequest,
+  registerSuccess,
+  registerError,
+  logoutRequest,
+  logoutSuccess,
+  logoutError,
+  loginRequest,
+  loginSuccess,
+  loginError,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
+};
+export default authActions;

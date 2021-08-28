@@ -1,43 +1,35 @@
-import {useFetchContactsQuery } from '../../redux/phonebook/phonebook-slice';
-import {ContactListItem} from '../ContactiListItem/ContactListItem';
-import { useState, useEffect } from 'react';
-import  {Spinner} from '../Spinner/Spinner';
-import Filter from '../Filter/Filter';
-import {Contact} from './ContactList.styles'
+import { Contact, ContactItem, ButtonDelete, Text } from './ContactList.styles'
+import { useSelector, useDispatch } from 'react-redux';
 
-export const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
-  const { data, isFetching } = useFetchContactsQuery();
+import  contactsOperations from '../../redux/phonebook/phonebook-operations';
+import * as contactSelectors from "../../redux/phonebook/pnonebook-selector";
 
-  useEffect(() => {
-    if (data) {
-      setContacts(data);
-    }
-  }, [data]);
 
-  const onFilteredContacts = filter => {
-    if (filter) {
-      const normalizeFilter = filter.toLowerCase();
-      const filterValue = contacts.filter(({ name }) =>
-        name.toLowerCase().includes(normalizeFilter),
-      );
 
-      setContacts(filterValue);
-    } else {
-      setContacts(data);
-    }
-  };
+const ContactList = () => {
+    
+ const contacts = useSelector(contactSelectors.getVisibleContacts);
+  const dispatch = useDispatch();
+  
+
     return (
         <>
-            <Filter filter ={onFilteredContacts}/>
-                {isFetching && (
-                <Spinner size={12} />)}
-            <Contact>
-                {contacts.map(contact => (
-            <ContactListItem key={contact.id} {...contact} />
-          ))}
-      </Contact>
-        </>
+           
+                <Contact>
+                    {contacts.map(({ id, name, number }) => (
+                        <ContactItem
+                            key={id}>
+                            <Text>{name}:{number}
+                            </Text>
+                            <ButtonDelete type="button" onClick={() => dispatch(contactsOperations.deleteContact(id))}>Delete</ButtonDelete>
+                        </ContactItem>
+                    ))}
+                </Contact>
+          
+                </>
     )
 }
+export default ContactList;
 
+
+  

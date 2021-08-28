@@ -1,115 +1,90 @@
-import { useCreateContactMutation, useFetchContactsQuery } from '../../redux/phonebook/phonebook-slice';
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Label, Input, ButtonAdd, Span } from './ContactForm.styles'
 
-
-import { toast } from 'react-hot-toast';
-import {Spinner} from '../Spinner/Spinner';
-
-
-export const ContactForm =() =>{
-    const [name, setName] = useState('');
-    const [number, setNumber] = useState('')
+import { useSelector, useDispatch  } from "react-redux";
+import   contactsSelectors  from '../../redux/phonebook/pnonebook-selector';
+import  contactsOperations from '../../redux/phonebook/phonebook-operations';
 
 
-  const [createContact, {isLoading}] = useCreateContactMutation();
-  const { data: contacts } = useFetchContactsQuery();
+export default function ContactForm() {
+   const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    name: '',
+    number: '',
+  });
   
+  const contacts = useSelector(contactsSelectors.getContacts)
+   
   const nameInputId = uuidv4();
   const numberInputId = uuidv4();
   
-
+  
+  
     
   const  handleChange = event => {
-  const { name, value } = event.target;
-      
-switch(name){
-    case "name":
-        setName(value);
-        break;
-    
-    case "number":
-        setNumber(value);
-        break;
-
-    default: return;
-      };
+  const { name, value } = event.currentTarget;
+  setUser(user => ({ ...user, [name]: value }));
     };
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newContact = name.toLowerCase();
-    const addContacts = contacts.find(
-      contact => contact.name.toLowerCase() === newContact
-    );
-      
-    if ( addContacts) {
-      alert(`${name} is already in the contacts.`);
+    if (contacts.some(contact => contact.name === user.name)) {
+      alert(`${user.name} is already in contacts`);
       reset();
       return;
-    } 
-    createContact({ name, number });
-    toast.success('Contact saved', {autoClose: 2000})
-    
+    }
+    dispatch(contactsOperations.addContact(user));
+
     reset();
   };
   
-    
+  
     const reset = () => {
-        setName('');
-        setNumber('');
+         setUser({ name: '', number: '' });
     }
 
-     return (
-            <form onSubmit={handleSubmit}>
-            <Label>
-                <Span>Name</Span>
-                    <Input
-                        type="text"
-                        name="name"
-                        placeholder= "Enter name"
-                         onChange={handleChange}
-                        value={name}
-                         id={nameInputId} 
-                        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                        required
+  return (
+    <form onSubmit={handleSubmit}>
+      <Label>
+        <Span>Name</Span>
+        <Input
+          type="text"
+          name="name"
+          placeholder="Enter name"
+          onChange={handleChange}
+          value={user.name}
+          id={nameInputId}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
                           
-                    />
-            </Label>
+        />
+      </Label>
         
-            <Label>
-                <Span >Number</Span>
-                 <Input
-                  type="tel"
-                    name="number"
-                 placeholder="Enter number"
-                  onChange={handleChange}
-                    value={number}
-                     id={numberInputId}
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-                    required
+      <Label>
+        <Span >Number</Span>
+        <Input
+          type="tel"
+          name="number"
+          placeholder="Enter number"
+          onChange={handleChange}
+          value={user.number}
+          id={numberInputId}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
                    
-                />
-                 </Label>
+        />
+      </Label>
                
-          <ButtonAdd type="submit" disabled={isLoading}>
-           {isLoading && <Spinner size={12} />}
-           ADD CONTACT
-          </ButtonAdd>
-              </form>
-        )
+      <ButtonAdd
+        type="submit"
+      >
+        Add contact
+      </ButtonAdd>
+    </form>
+  );
 }
-
-
-
-
-  
-
-
-
-
 
