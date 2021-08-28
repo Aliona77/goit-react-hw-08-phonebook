@@ -28,7 +28,7 @@ export default function UserMenu() {
   return (
     <div style={styles.container}>
       <img src={defaultAvatar} alt="" width="32" style={styles.avatar} />
-      <span style={styles.name}>Добро пожаловать, {name}</span>
+      <span style={styles.name}> {name}</span>
       <button type="button" onClick={onLogout}>
         Выйти
       </button>

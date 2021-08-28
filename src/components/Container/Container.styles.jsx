@@ -8,7 +8,7 @@ export const Title = styled.h1`
     font-size: 40px;
 `;
 export const Containers = styled.div`
- width: 400px;
+ width: 360px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;

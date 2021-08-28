@@ -1,16 +1,24 @@
-
-import { useEffect, Suspense} from 'react';
+import { useEffect, Suspense, lazy} from 'react';
 import {  useDispatch} from 'react-redux';
 import { Switch } from 'react-router-dom';
 import AppBar from './components/AppBar/AppBar';
-import ContactsView from './views/ContactView/ContactView';
-import HomeView from './views/HomeView/HomeView';
-import RegisterView from './views/RegisterView/RegisterView';
-import LoginView from './views/LoginView/LoginView';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import { authOperations } from './redux/auth';
+import { Spinner } from './components/Spinner/Spinner';
 
+const HomeView = lazy(() =>
+  import('./views/HomeView/HomeView' /* webpackChunkName: "HomeView" */),
+);
+const RegisterView = lazy(() =>
+  import('./views/RegisterView/RegisterView' /* webpackChunkName: "RegisterView" */),
+);
+const LoginView = lazy(() =>
+  import('./views/LoginView/LoginView' /* webpackChunkName: "LoginView" */),
+);
+const ContactsView = lazy(() =>
+  import('./views/ContactView/ContactView' /* webpackChunkName: "ContactsView" */),
+);
 
 
 export default function App() {
@@ -26,7 +34,7 @@ export default function App() {
           <AppBar />
           
             <Switch>
-              <Suspense fallback={<p>Загружаем...</p>}>
+              <Suspense fallback={<Spinner/>}>
               <PublicRoute exact path="/">
                 <HomeView />
                 </PublicRoute>
