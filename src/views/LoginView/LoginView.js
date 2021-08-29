@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
-//import{ Spinner }from '../../components/Spinner/Spinner.jsx';
 
 const styles = {
   form: {
@@ -11,6 +10,11 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     marginBottom: 15,
+  },
+  box: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 };
 
@@ -32,7 +36,7 @@ export default function LoginView() {
     dispatch(authOperations.logIn({ email, password }));
   };
   return (
-    <div>
+    <div style={styles.box}>
       <h1>Log in</h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">

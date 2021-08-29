@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-import defaultAvatar from './default-avatar.png';
+import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 
 const styles = {
   container: {
@@ -10,6 +10,8 @@ const styles = {
   },
   avatar: {
     marginRight: 4,
+    fontSize: 40,
+    color:"lime",
   },
   name: {
     fontWeight: 700,
@@ -27,7 +29,7 @@ export default function UserMenu() {
 
   return (
     <div style={styles.container}>
-      <img src={defaultAvatar} alt="" width="32" style={styles.avatar} />
+      <EmojiNatureIcon  style={styles.avatar} />
       <span style={styles.name}> {name}</span>
       <button type="button" onClick={onLogout}>
         Log out

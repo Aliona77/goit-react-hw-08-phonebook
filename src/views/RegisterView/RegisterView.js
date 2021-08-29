@@ -11,6 +11,11 @@ const styles = {
     flexDirection: "column",
     marginBottom: 15,
   },
+  box: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 };
 
 export default function RegisterView() {
@@ -36,7 +41,7 @@ export default function RegisterView() {
   };
 
   return (
-    <div>
+    <div style={styles.box}>
       <h1>Sign in </h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">

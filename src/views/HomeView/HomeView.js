@@ -1,4 +1,5 @@
 import React from "react";
+import AddToHomeScreenIcon from "@material-ui/icons/AddToHomeScreen";
 
 const styles = {
   container: {
@@ -9,8 +10,9 @@ const styles = {
   },
   title: {
     fontWeight: 500,
-    fontSize: 48,
+    fontSize: 60,
     textAlign: "center",
+    color: "lime",
   },
 };
 
@@ -18,9 +20,7 @@ const HomeView = () => (
   <div style={styles.container}>
     <h1 style={styles.title}>
       Welcome
-      <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
-      </span>
+      <AddToHomeScreenIcon style={{ fontSize: 55 }} />
     </h1>
   </div>
 );

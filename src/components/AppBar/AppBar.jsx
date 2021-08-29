@@ -4,6 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
 import { authSelectors } from '../../redux/auth';
+//import {AppBar as PhoneBookBar} from "@material-ui/core";
 
 const styles = {
   header: {
@@ -19,9 +20,11 @@ export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLogin);
   
   return (
+   // <PhoneBookBar position="static">
     <header style={styles.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
+    //</PhoneBookBar>
   );
 }
