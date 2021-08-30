@@ -21,7 +21,7 @@ export default function AppBar() {
   
   return (
    // <PhoneBookBar position="static">
-    <header style={styles.header}>
+   <header style={styles.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>

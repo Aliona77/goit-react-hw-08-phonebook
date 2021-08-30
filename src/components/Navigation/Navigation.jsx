@@ -26,14 +26,14 @@ return (
       Home
     </NavLink>
 
-    {isLoggedIn && (
-      <NavLink
-        to="/contacts"
-        exact
-        style={styles.link}
-        activeStyle={styles.activeLink}
-      >
-        Contacts
+   {isLoggedIn && (
+        <NavLink
+          to="/contacts"
+          exact
+          style={styles.link}
+          activeStyle={styles.activeLink}
+        >
+          Contacts
       </NavLink>
     )}
   </nav>
